@@ -22,16 +22,19 @@ function mostrarProveedores(providers) {
     card.className = "provider-card";
 
     card.innerHTML = `
-      <img src="${provider.logo}" alt="${provider.nombre_comercial}" class="logo">
-      <h3>${provider.nombre_comercial}</h3>
-      <p><strong>Estilista:</strong> ${provider.estilista}</p>
-      <p><strong>Provincia:</strong> ${provider.provincia}</p>
-      <p>
-        ${provider.atiende_local ? "🏠 Atención en local" : ""}
-        ${provider.atiende_domicilio ? "🚗 Domicilio" : ""}
-      </p>
+      <a href="provider.html?id=${provider.id}" style="text-decoration:none;color:inherit;">
+        <img src="${provider.logo}" alt="${provider.nombre_comercial}" class="logo">
+        <h3>${provider.nombre_comercial}</h3>
+        <p><strong>Estilista:</strong> ${provider.estilista}</p>
+        <p><strong>Provincia:</strong> ${provider.provincia}</p>
+        <p>
+          ${provider.atiende_local ? "🏠 Atención en local" : ""}
+          ${provider.atiende_domicilio ? "🚗 Domicilio" : ""}
+        </p>
+      </a>
     `;
 
     container.appendChild(card);
   });
 }
+

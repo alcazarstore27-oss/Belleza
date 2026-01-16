@@ -20,7 +20,7 @@ body {
 .login-container {
   flex: 1;
   width: 100%;
-  max-width: 480px;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,9 +28,9 @@ body {
   padding: 40px 20px;
 }
 
-/* LOGO APP (REDUCIDO A LA MITAD) */
+/* LOGO APP */
 .app-logo {
-  width: 260px;          /* 👈 antes 520px */
+  width: 260px;          /* Desktop */
   max-width: 90%;
   height: auto;
   margin-bottom: 30px;
@@ -38,7 +38,7 @@ body {
 
 /* TEXTO */
 .login-container h2 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #333;
   margin-bottom: 20px;
   text-align: center;
@@ -84,30 +84,29 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .footer p {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #666;
 }
 
 /* LOGO DESARROLLADOR */
 .dev-logo {
-  width: 240px;
+  width: 220px;
   max-width: 80%;
   height: auto;
   opacity: 0.9;
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE — MÓVIL */
 @media (max-width: 480px) {
   .app-logo {
-    width: 200px;        /* 👈 más pequeño en móvil */
+    width: 180px;        /* 👈 apenas más ancho que el botón */
   }
 
   .dev-logo {
-    width: 180px;
+    width: 160px;
   }
 }
-

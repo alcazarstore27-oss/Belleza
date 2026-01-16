@@ -8,53 +8,89 @@
   <link rel="stylesheet" href="css/styles.css">
 
   <style>
-    .providers-container {
+    body {
+      background: linear-gradient(180deg, #f9fafc, #eef1f6);
+    }
+
+    header {
       padding: 20px;
+      text-align: center;
+    }
+
+    header h2 {
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    /* CONTENEDOR */
+    .providers-container {
+      padding: 0 16px 24px;
       display: grid;
       grid-template-columns: 1fr;
       gap: 16px;
     }
 
+    /* CARD */
     .provider-card {
-      background: #fff;
-      border-radius: 12px;
+      background: #ffffff;
+      border-radius: 16px;
       padding: 16px;
       display: flex;
       align-items: center;
       gap: 14px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
       cursor: pointer;
-      transition: transform 0.15s ease;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
-    .provider-card:hover {
-      transform: scale(1.02);
+    .provider-card:active {
+      transform: scale(0.98);
     }
 
+    /* LOGO */
     .provider-card img {
-      width: 72px;
-      height: 72px;
+      width: 80px;
+      height: 80px;
       object-fit: contain;
-      border-radius: 50%;
-      background: #f2f2f2;
-      padding: 6px;
+      border-radius: 14px;
+      background: #f3f4f7;
+      padding: 8px;
+      flex-shrink: 0;
+    }
+
+    /* INFO */
+    .provider-info {
+      flex: 1;
     }
 
     .provider-info h3 {
       margin: 0;
-      font-size: 1rem;
+      font-size: 1.05rem;
+      color: #222;
     }
 
     .provider-info p {
       margin: 4px 0;
       font-size: 0.85rem;
-      color: #555;
+      color: #666;
+    }
+
+    /* BADGE */
+    .badge {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 4px 8px;
+      font-size: 0.7rem;
+      border-radius: 12px;
+      background: #e8e7ff;
+      color: #6c63ff;
+      font-weight: 600;
     }
   </style>
 </head>
 <body>
 
-<header style="padding:16px;text-align:center">
+<header>
   <h2>Proveedores disponibles</h2>
 </header>
 
@@ -68,8 +104,9 @@
 
     <div class="provider-info">
       <h3>Manos de Oro Studio</h3>
-      <p>San José</p>
-      <p>Local y domicilio</p>
+      <p>📍 San José</p>
+      <p>💅 Manicure · Uñas · Diseño</p>
+      <span class="badge">Local y domicilio</span>
     </div>
 
   </div>
@@ -83,3 +120,4 @@
 
 </body>
 </html>
+

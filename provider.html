@@ -13,34 +13,41 @@
       background: #f9f9f9;
     }
 
-    .back {
-      margin-bottom: 10px;
+    a {
+      text-decoration: none;
+      color: #6c63ff;
+      font-size: 14px;
     }
 
+    /* HEADER */
     .provider-header {
       text-align: center;
       margin-bottom: 20px;
     }
 
     .provider-logo {
-      max-width: 180px;   /* 👈 LOGO REDUCIDO */
-      width: 100%;
+      width: 160px;       /* 👈 LOGO REDUCIDO */
+      max-width: 100%;
       height: auto;
       margin-bottom: 10px;
     }
 
-    .provider-info {
-      text-align: left;
-      margin-bottom: 20px;
+    h2 {
+      margin: 5px 0;
     }
 
-    h2 {
-      margin: 10px 0;
+    /* INFO */
+    .provider-info {
+      background: #fff;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
     }
 
     /* TRABAJOS */
     .jobs {
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
     .jobs-grid {
@@ -51,7 +58,7 @@
 
     .jobs-grid img {
       width: 100%;
-      height: 100px;
+      height: 110px;
       object-fit: cover;
       border-radius: 8px;
       background: #ddd;
@@ -62,12 +69,15 @@
       width: 100%;
       border-collapse: collapse;
       background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
     }
 
     th, td {
       padding: 8px;
-      border-bottom: 1px solid #ddd;
       font-size: 14px;
+      border-bottom: 1px solid #eee;
+      text-align: center;
     }
 
     th {
@@ -89,21 +99,15 @@
       border-radius: 5px;
       cursor: pointer;
     }
-
-    .btn:hover {
-      opacity: 0.9;
-    }
   </style>
 </head>
 <body>
 
-  <div class="back">
-    <a href="home.html">← Volver</a>
-  </div>
+  <a href="home.html">← Volver</a>
 
   <!-- HEADER -->
   <div class="provider-header">
-    <img src="img/services/providers/prov001/logo.png" class="provider-logo" alt="Logo proveedor">
+    <img src="img/providers/prov001/logo.png" class="provider-logo" alt="Logo proveedor">
     <h2>Manos de Oro Studio</h2>
   </div>
 
@@ -119,9 +123,9 @@
   <div class="jobs">
     <h3>Trabajos realizados</h3>
     <div class="jobs-grid">
-      <img src="img/services/providers/prov001/trabajos/trabajo1.jpg" alt="">
-      <img src="img/services/providers/prov001/trabajos/trabajo2.jpg" alt="">
-      <img src="img/services/providers/prov001/trabajos/trabajo3.jpg" alt="">
+      <img src="img/providers/prov001/trabajos/trabajo01.jpg">
+      <img src="img/providers/prov001/trabajos/trabajo02.jpg">
+      <img src="img/providers/prov001/trabajos/trabajo03.jpg">
     </div>
   </div>
 
@@ -132,30 +136,30 @@
       <th>Servicio</th>
       <th>Nombre</th>
       <th>Precio</th>
-      <th>Duración</th>
+      <th>Tiempo</th>
       <th></th>
     </tr>
 
     <tr>
-      <td><img src="img/services/providers/prov001/services/manicure.jpg" class="service-img"></td>
+      <td><img src="img/services/providers/prov001/servicio01.jpg" class="service-img"></td>
       <td>Manicure clásico</td>
-      <td>₡7000</td>
+      <td>₡7,000</td>
       <td>40 min</td>
       <td><button class="btn">Reservar</button></td>
     </tr>
 
     <tr>
-      <td><img src="img/services/providers/prov001/services/gel.jpg" class="service-img"></td>
+      <td><img src="img/services/providers/prov001/servicio02.jpg" class="service-img"></td>
       <td>Manicure gel</td>
-      <td>₡10000</td>
+      <td>₡10,000</td>
       <td>60 min</td>
       <td><button class="btn">Reservar</button></td>
     </tr>
 
     <tr>
-      <td><img src="img/services/providers/prov001/services/acrilicas.jpg" class="service-img"></td>
+      <td><img src="img/services/providers/prov001/servicio03.jpg" class="service-img"></td>
       <td>Uñas acrílicas</td>
-      <td>₡18000</td>
+      <td>₡18,000</td>
       <td>90 min</td>
       <td><button class="btn">Reservar</button></td>
     </tr>

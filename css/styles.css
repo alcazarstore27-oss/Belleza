@@ -26,48 +26,48 @@ body {
 /* CONTENEDOR LOGIN */
 .login-container {
   width: 100%;
-  max-width: 420px;
+  max-width: 520px; /* 👈 MÁS ANCHO PARA SOPORTAR LOGOS GRANDES */
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-/* LOGOS = MISMO ANCHO QUE EL BOTÓN */
+/* LOGOS GRANDES */
 .app-logo,
 .dev-logo {
-  width: 100%;        /* 👈 MISMO ANCHO QUE INPUT Y BOTÓN */
-  max-width: 100%;
+  width: 100%;
+  max-width: 520px;   /* 👈 APARENTA 4× MÁS GRANDE */
   height: auto;
 }
 
 /* ESPACIADO LOGO APP */
 .app-logo {
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 /* TEXTO */
 .login-container h2 {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: #333;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 /* INPUT */
 .login-container input {
   width: 100%;
-  padding: 14px 16px;
+  padding: 16px;
   font-size: 1rem;
   border-radius: 8px;
   border: 1px solid #ccc;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 /* BOTÓN */
 .login-container button {
   width: 100%;
-  padding: 14px;
-  font-size: 1rem;
+  padding: 16px;
+  font-size: 1.05rem;
   border-radius: 8px;
   border: none;
   background: #6c63ff;
@@ -77,16 +77,28 @@ body {
 
 /* FOOTER */
 .footer {
-  padding: 16px 10px;
+  padding: 18px 10px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 /* TEXTO FOOTER */
 .footer p {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: #666;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 480px) {
+  .login-container {
+    max-width: 100%;
+  }
+
+  .app-logo,
+  .dev-logo {
+    max-width: 100%; /* 👈 OCUPA TODO EL ANCHO DEL MÓVIL */
+  }
 }

@@ -4,15 +4,7 @@
 fetch("data.json")
   .then(response => response.json())
   .then(data => {
-    console.log("Data cargada correctamente:", data);
-
-    // Renderizar proveedores
     renderProviders(data.providers);
-
-    // Renderizar servicios del primer proveedor (prueba inicial)
-    if (data.providers.length > 0) {
-      renderServices(data.providers[0].id, data.services);
-    }
   })
   .catch(error => {
     console.error("Error cargando data.json:", error);
@@ -20,7 +12,7 @@ fetch("data.json")
 
 
 // ===============================
-// RENDER PROVEEDORES
+// RENDER PROVEEDORES (HOME)
 // ===============================
 function renderProviders(providers) {
   const container = document.getElementById("providers-container");
@@ -30,62 +22,25 @@ function renderProviders(providers) {
     const card = document.createElement("div");
     card.className = "provider-card";
 
+    let attention = "";
+    if (provider.atiende_local) attention += "🏠 Atención en local ";
+    if (provider.atiende_domicilio) attention += "🚗 Domicilio";
+
     card.innerHTML = `
       <img src="${provider.logo}" alt="${provider.nombre_comercial}">
       <h3>${provider.nombre_comercial}</h3>
       <p>${provider.estilista}</p>
       <p>${provider.provincia}</p>
-      <button data-id="${provider.id}">Ver servicios</button>
+      <p>${attention}</p>
+      <button class="btn-provider">Ver perfil</button>
     `;
 
-    // Click para ver servicios del proveedor
-    card.querySelector("button").addEventListener("click", () => {
-      renderServices(provider.id, window.appServices);
+    // 🔴 ESTE ES EL CAMBIO CLAVE
+    card.querySelector(".btn-provider").addEventListener("click", () => {
+      window.location.href = `provider.html?id=${provider.id}`;
     });
 
     container.appendChild(card);
   });
-
-  // Guardamos servicios globalmente
-  window.appServices = providers.length ? null : null;
 }
 
-
-// ===============================
-// RENDER SERVICIOS POR PROVEEDOR
-// ===============================
-function renderServices(providerId, services) {
-  const container = document.getElementById("services-container");
-
-  if (!container) {
-    console.error("No existe el contenedor de servicios");
-    return;
-  }
-
-  container.innerHTML = "";
-
-  const providerServices = services.filter(
-    service => service.provider_id === providerId
-  );
-
-  if (providerServices.length === 0) {
-    container.innerHTML = "<p>No hay servicios disponibles para este proveedor.</p>";
-    return;
-  }
-
-  providerServices.forEach(service => {
-    const card = document.createElement("div");
-    card.className = "service-card";
-
-    card.innerHTML = `
-      <img src="${service.imagen}" alt="${service.nombre}">
-      <h3>${service.nombre}</h3>
-      <p>${service.descripcion}</p>
-      <p>⏱ ${service.duracion_min} min</p>
-      <p>💰 ₡${service.precio}</p>
-      <button>Reservar</button>
-    `;
-
-    container.appendChild(card);
-  });
-}

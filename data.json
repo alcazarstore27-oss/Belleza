@@ -8,11 +8,12 @@
       "atiende_local": true,
       "atiende_domicilio": true,
       "contacto": "+506 8888 8888",
-      "logo": "img/prov001/logo.png",
+      "logo": "./img/prov001/logo.png",
+      "estilista_img": "./img/prov001/estilista.png",
       "trabajos": [
-        "img/prov001/trabajos/trabajo01.png",
-        "img/prov001/trabajos/trabajo02.png",
-        "img/prov001/trabajos/trabajo03.png"
+        "./img/prov001/trabajos/trabajo01.png",
+        "./img/prov001/trabajos/trabajo02.png",
+        "./img/prov001/trabajos/trabajo03.png"
       ]
     }
   ],
@@ -23,7 +24,7 @@
       "nombre": "Manicure clásico",
       "precio": 7000,
       "duracion_min": 40,
-      "imagen": "img/prov001/services/servicio01.png"
+      "imagen": "./img/prov001/services/servicio01.png"
     },
     {
       "id": "serv002",
@@ -31,7 +32,7 @@
       "nombre": "Manicure gel",
       "precio": 10000,
       "duracion_min": 60,
-      "imagen": "img/prov001/services/servicio02.png"
+      "imagen": "./img/prov001/services/servicio02.png"
     },
     {
       "id": "serv003",
@@ -39,7 +40,7 @@
       "nombre": "Uñas acrílicas",
       "precio": 18000,
       "duracion_min": 90,
-      "imagen": "img/prov001/services/servicio03.png"
+      "imagen": "./img/prov001/services/servicio03.png"
     }
   ]
 }

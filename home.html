@@ -4,17 +4,76 @@
   <meta charset="UTF-8">
   <title>Guapixim | Proveedores</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    .providers-container {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .provider-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+
+    .provider-card:hover {
+      transform: scale(1.02);
+    }
+
+    .provider-card img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: #f2f2f2;
+      padding: 6px;
+    }
+
+    .provider-info h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .provider-info p {
+      margin: 4px 0;
+      font-size: 0.85rem;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
 
-<header class="header">
-  <h1>Proveedores disponibles</h1>
+<header style="padding:16px;text-align:center">
+  <h2>Proveedores disponibles</h2>
 </header>
 
-<main style="padding:20px;text-align:center">
-  <p>✔ Login correcto</p>
-  <a href="provider.html?id=prov001">Ir al proveedor de prueba</a>
+<main class="providers-container">
+
+  <!-- PROVEEDOR 1 -->
+  <div class="provider-card"
+       onclick="location.href='provider.html?id=prov001'">
+
+    <img src="img/prov001/logo.png" alt="Manos de Oro Studio">
+
+    <div class="provider-info">
+      <h3>Manos de Oro Studio</h3>
+      <p>San José</p>
+      <p>Local y domicilio</p>
+    </div>
+
+  </div>
+
 </main>
 
 <footer class="footer">

@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  fetch("data.json")
+  fetch("./data.json")
     .then(res => res.json())
     .then(data => {
 
@@ -20,31 +20,36 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // HEADER
+      // LOGO
       document.getElementById("providerLogo").src = provider.logo;
       document.getElementById("providerName").textContent = provider.nombre_comercial;
 
-      // INFO
+      // INFO + IMAGEN ESTILISTA
       document.getElementById("providerInfo").innerHTML = `
+        <img src="${provider.estilista_img}" style="width:120px;border-radius:10px;margin-bottom:10px;">
         <p><strong>Estilista:</strong> ${provider.estilista}</p>
         <p><strong>Provincia:</strong> ${provider.provincia}</p>
         <p><strong>Atención:</strong>
           ${provider.atiende_local ? "Local" : ""} 
-          ${provider.atiende_domicilio ? "y Domicilio" : ""}
+          ${provider.atiende_domicilio ? " y Domicilio" : ""}
         </p>
         <p><strong>Contacto:</strong> ${provider.contacto}</p>
       `;
 
       // TRABAJOS
       const jobsGrid = document.getElementById("jobsGrid");
+      jobsGrid.innerHTML = "";
+
       provider.trabajos.forEach(img => {
         const image = document.createElement("img");
         image.src = img;
+        image.alt = "Trabajo realizado";
         jobsGrid.appendChild(image);
       });
 
       // SERVICIOS
       const table = document.getElementById("servicesTable");
+      table.innerHTML = "";
 
       services.forEach(service => {
         const row = document.createElement("tr");
@@ -62,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     })
     .catch(err => {
-      console.error("Error:", err);
+      console.error("Error cargando data.json:", err);
     });
 
 });

@@ -3,56 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guapixim@ | Acceso</title>
+  <title>Guapixim</title>
 
-  <!-- CSS -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
+<body class="login-page">
 
-  <!-- CONTENEDOR PRINCIPAL -->
-  <div class="login-container">
+  <main class="login-container">
 
-    <!-- LOGO APP -->
-    <img
-      src="img/logo/logo.png"
-      alt="Guapixim@"
-      class="app-logo"
-    />
+    <img src="img/logo/logo.png" alt="Guapixim" class="app-logo">
 
-    <!-- TEXTO -->
-    <h1 class="login-title">Ingresa para continuar</h1>
+    <h2>Ingresa para continuar</h2>
 
-    <!-- FORMULARIO LOGIN -->
-    <form id="login-form" class="login-form">
+    <input 
+      type="text" 
+      id="clientInput" 
+      placeholder="Correo o número de teléfono"
+    >
 
-      <input
-        type="text"
-        id="login-input"
-        placeholder="Correo o número de teléfono"
-        required
-      />
+    <button id="loginBtn">Continuar</button>
 
-      <button type="submit" class="login-btn">
-        Continuar
-      </button>
+  </main>
 
-    </form>
-
-  </div>
-
-  <!-- FOOTER -->
   <footer class="footer">
     <p>Powered by AlcazarPlay</p>
-    <img
-      src="img/dev/alcazarplay-logo.png"
-      alt="AlcazarPlay"
-      class="dev-logo"
-    />
+    <img src="img/dev/alcazarplay-logo.png" class="dev-logo">
   </footer>
 
-  <!-- JS -->
   <script src="js/app.js"></script>
-
 </body>
 </html>

@@ -26,45 +26,45 @@ body {
   padding: 20px;
 }
 
-/* LOGO APP */
+/* LOGO APP (MÁS GRANDE) */
 .login-logo img {
-  width: 180px;
-  max-width: 80%;
-  margin-bottom: 25px;
+  width: 260px;              /* ⬅️ AUMENTADO */
+  max-width: 90%;
+  margin-bottom: 30px;
 }
 
 /* LOGIN BOX */
 .login-box {
   width: 100%;
-  max-width: 360px;
+  max-width: 380px;
 }
 
 /* TEXTO */
 .login-text {
   font-size: 1rem;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
   color: #555;
 }
 
 /* INPUT */
 .login-input {
   width: 100%;
-  padding: 12px 15px;
+  padding: 14px 16px;
   font-size: 1rem;
   border: 1px solid #ccc;
-  border-radius: 6px;
-  margin-bottom: 15px;
+  border-radius: 8px;
+  margin-bottom: 16px;
 }
 
 /* BOTÓN */
 .login-button {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   font-size: 1rem;
   background-color: #e91e63;
   color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
@@ -75,7 +75,7 @@ body {
 /* FOOTER */
 .footer {
   text-align: center;
-  padding: 15px 10px;
+  padding: 18px 10px 22px;
   border-top: 1px solid #eee;
 }
 
@@ -83,11 +83,13 @@ body {
 .footer p {
   font-size: 0.85rem;
   color: #777;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
-/* LOGO DEV */
+/* LOGO DEV (MÁS LEGIBLE) */
 .dev-logo {
-  width: 100px;
-  max-width: 60%;
+  width: 120px;              /* ⬅️ AUMENTADO */
+  max-width: 70%;
+  opacity: 0.85;             /* DISCRETO */
 }
+

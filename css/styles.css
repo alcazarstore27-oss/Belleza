@@ -18,8 +18,8 @@ body {
 .login-wrapper {
   flex: 1;
   display: flex;
-  justify-content: center;   /* CENTRADO HORIZONTAL */
-  align-items: center;       /* CENTRADO VERTICAL */
+  justify-content: center;
+  align-items: center;
   padding: 20px;
 }
 
@@ -29,15 +29,14 @@ body {
   max-width: 420px;
   display: flex;
   flex-direction: column;
-  align-items: center;       /* 🔥 ESTO CENTRA EL LOGO */
+  align-items: center;
   text-align: center;
 }
 
-/* LOGO APP */
+/* LOGO APP (DESKTOP) */
 .app-logo {
-  width: auto;
-  max-width: 90%;
-  max-height: 150px;
+  width: 280px;
+  max-width: 100%;
   height: auto;
   margin-bottom: 24px;
 }
@@ -89,15 +88,17 @@ body {
 
 /* LOGO DEV */
 .dev-logo {
-  width: auto;
-  max-width: 80%;
-  max-height: 70px;
+  width: 120px;
   height: auto;
 }
 
-/* 📱 MOBILE EXTRA SEGURO */
-@media (max-height: 650px) {
+/* 📱 MOBILE */
+@media (max-width: 480px) {
   .app-logo {
-    max-height: 120px;
+    width: 220px; /* 👈 EXACTO COMO PEDISTE */
+  }
+
+  .dev-logo {
+    width: 100px;
   }
 }

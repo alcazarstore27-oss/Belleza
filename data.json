@@ -9,38 +9,45 @@
       "atiende_domicilio": true,
       "contacto": "+506 8888 8888",
       "logo": "img/providers/prov001/logo.png",
-      "foto_estilista": "img/providers/prov001/estilista.png",
+      "foto_estilista": "img/providers/prov001/estilista.jpg",
       "trabajos": [
-        "img/providers/prov001/trabajos/trabajo01.png",
-        "img/providers/prov001/trabajos/trabajo02.png",
-        "img/providers/prov001/trabajos/trabajo03.png"
+        "img/providers/prov001/trabajos/trabajo1.jpg",
+        "img/providers/prov001/trabajos/trabajo2.jpg",
+        "img/providers/prov001/trabajos/trabajo3.jpg"
       ]
     }
   ],
+
   "services": [
     {
       "id": "serv001",
       "provider_id": "prov001",
       "nombre": "Manicure clásico",
+      "descripcion": "Limpieza, corte y esmaltado tradicional.",
       "precio": 7000,
       "duracion_min": 40,
-      "imagen": "img/providers/prov001/services/servicio01.png"
+      "imagen": "img/services/providers/prov001/servicio1.jpg"
     },
     {
       "id": "serv002",
       "provider_id": "prov001",
       "nombre": "Manicure gel",
+      "descripcion": "Manicure con esmalte en gel de larga duración.",
       "precio": 10000,
       "duracion_min": 60,
-      "imagen": "img/providers/prov001/services/servicio02.png"
+      "imagen": "img/services/providers/prov001/servicio2.jpg"
     },
     {
       "id": "serv003",
       "provider_id": "prov001",
       "nombre": "Uñas acrílicas",
+      "descripcion": "Aplicación de uñas acrílicas con diseño básico.",
       "precio": 18000,
       "duracion_min": 90,
-      "imagen": "img/providers/prov001/services/servicio03.png"
+      "imagen": "img/services/providers/prov001/servicio3.jpg"
     }
-  ]
+  ],
+
+  "appointments": []
 }
+

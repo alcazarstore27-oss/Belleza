@@ -9,31 +9,37 @@
 /* BODY */
 body {
   min-height: 100vh;
-  background: linear-gradient(180deg, #f9fafc, #eef1f6);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  background: linear-gradient(180deg, #f9fafc, #eef1f6);
+}
+
+/* WRAPPER CENTRADO */
+.login-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;   /* CENTRADO HORIZONTAL */
+  align-items: center;       /* CENTRADO VERTICAL */
+  padding: 20px;
 }
 
 /* CONTENEDOR LOGIN */
 .login-container {
-  flex: 1;
   width: 100%;
   max-width: 420px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+  align-items: center;       /* 🔥 ESTO CENTRA EL LOGO */
+  text-align: center;
 }
 
 /* LOGO APP */
 .app-logo {
   width: auto;
   max-width: 90%;
-  max-height: 200px; /* Desktop */
+  max-height: 150px;
   height: auto;
-  margin-bottom: 25px;
+  margin-bottom: 24px;
 }
 
 /* TEXTO */
@@ -41,7 +47,6 @@ body {
   font-size: 1rem;
   color: #333;
   margin-bottom: 16px;
-  text-align: center;
 }
 
 /* INPUT */
@@ -68,7 +73,6 @@ body {
 
 /* FOOTER */
 .footer {
-  width: 100%;
   padding: 16px 10px;
   text-align: center;
   display: flex;
@@ -77,6 +81,7 @@ body {
   gap: 6px;
 }
 
+/* TEXTO FOOTER */
 .footer p {
   font-size: 0.75rem;
   color: #666;
@@ -86,24 +91,13 @@ body {
 .dev-logo {
   width: auto;
   max-width: 80%;
-  max-height: 100px;
+  max-height: 70px;
   height: auto;
-  opacity: 0.9;
 }
 
-/* 📱 MOBILE AJUSTE REAL */
-@media (max-width: 480px) {
-
-  .login-container {
-    padding-top: 10px;
-  }
-
+/* 📱 MOBILE EXTRA SEGURO */
+@media (max-height: 650px) {
   .app-logo {
-    max-height: 150px;   /* 🔥 CLAVE: ya no se come el texto */
-    margin-bottom: 20px;
-  }
-
-  .dev-logo {
-    max-height: 70px;
+    max-height: 120px;
   }
 }

@@ -28,10 +28,10 @@ body {
   padding: 40px 20px;
 }
 
-/* LOGO APP */
+/* LOGO APP (REDUCIDO A LA MITAD) */
 .app-logo {
-  width: 520px;           /* 👈 GRANDE */
-  max-width: 95%;
+  width: 260px;          /* 👈 antes 520px */
+  max-width: 90%;
   height: auto;
   margin-bottom: 30px;
 }
@@ -94,7 +94,7 @@ body {
 
 /* LOGO DESARROLLADOR */
 .dev-logo {
-  width: 240px;          /* 👈 4× más grande que antes */
+  width: 240px;
   max-width: 80%;
   height: auto;
   opacity: 0.9;
@@ -103,11 +103,11 @@ body {
 /* RESPONSIVE */
 @media (max-width: 480px) {
   .app-logo {
-    width: 420px;
+    width: 200px;        /* 👈 más pequeño en móvil */
   }
 
   .dev-logo {
-    width: 200px;
+    width: 180px;
   }
 }
 

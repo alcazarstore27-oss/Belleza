@@ -3,39 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Plataforma de Belleza</title>
+  <title>Guapixim@ | Acceso</title>
 
   <!-- CSS -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <h1>Plataforma de Belleza</h1>
-    <p>Encuentra servicios profesionales cerca de ti</p>
-  </header>
+  <!-- LOGIN SCREEN -->
+  <main class="login-container">
 
-  <!-- MAIN CONTENT -->
-  <main>
+    <!-- LOGO APP -->
+    <div class="login-logo">
+      <img src="img/logo.png" alt="Guapixim@" />
+    </div>
 
-    <!-- PROVEEDORES -->
-    <section class="providers-section">
-      <h2>Proveedores disponibles</h2>
+    <!-- LOGIN FORM -->
+    <div class="login-box">
+      <p class="login-text">Ingresa para continuar</p>
 
-      <div id="providers-container" class="providers-container">
-        <!-- Proveedores se cargan dinámicamente -->
-      </div>
-    </section>
+      <input
+        type="text"
+        id="userAccess"
+        placeholder="Correo electrónico o número de teléfono"
+        class="login-input"
+      />
 
-    <!-- SERVICIOS DEL PROVEEDOR -->
-    <section class="services-section">
-      <h2>Servicios disponibles</h2>
-
-      <div id="services-container" class="services-container">
-        <!-- Servicios se cargan dinámicamente -->
-      </div>
-    </section>
+      <button id="loginBtn" class="login-button">
+        Continuar
+      </button>
+    </div>
 
   </main>
 
@@ -44,9 +41,9 @@
     <p>Powered by AlcazarPlay</p>
     <img
       src="img/dev/alcazarplay-logo.png"
-      alt="AlcazarPlay Logo"
+      alt="AlcazarPlay"
       class="dev-logo"
-    >
+    />
   </footer>
 
   <!-- JS -->

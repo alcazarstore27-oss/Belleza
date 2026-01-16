@@ -9,87 +9,105 @@
 /* BODY */
 body {
   min-height: 100vh;
+  background: linear-gradient(180deg, #f8f9fb, #eef1f6);
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
-  color: #333;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* LOGIN CONTAINER */
+/* CONTENEDOR PRINCIPAL LOGIN */
 .login-container {
   flex: 1;
+  width: 100%;
+  max-width: 480px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  padding: 20px;
+  padding: 40px 20px;
 }
 
-/* LOGO APP — 4X MÁS GRANDE */
-.login-logo img {
-  width: 700px;          /* ⬅️ MUY GRANDE */
-  max-width: 100%;
-  margin-bottom: 50px;
-}
-
-/* LOGIN BOX */
-.login-box {
-  width: 100%;
-  max-width: 500px;
+/* LOGO APP */
+.app-logo {
+  width: 520px;           /* 👈 GRANDE */
+  max-width: 95%;
+  height: auto;
+  margin-bottom: 30px;
 }
 
 /* TEXTO */
-.login-text {
-  font-size: 1.1rem;
-  margin-bottom: 26px;
-  color: #555;
+.login-container h2 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 /* INPUT */
-.login-input {
+.login-container input {
   width: 100%;
-  padding: 18px 20px;
-  font-size: 1.1rem;
+  padding: 14px 16px;
+  font-size: 1rem;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  border-radius: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  outline: none;
+}
+
+.login-container input:focus {
+  border-color: #6c63ff;
 }
 
 /* BOTÓN */
-.login-button {
+.login-container button {
   width: 100%;
-  padding: 18px;
-  font-size: 1.1rem;
-  background-color: #e91e63;
-  color: #fff;
+  padding: 14px;
+  font-size: 1rem;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
+  background-color: #6c63ff;
+  color: white;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.login-button:hover {
-  background-color: #d81b60;
+.login-container button:hover {
+  background-color: #554fe8;
 }
 
 /* FOOTER */
 .footer {
+  width: 100%;
+  padding: 20px 10px;
   text-align: center;
-  padding: 30px 10px 36px;
-  border-top: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
-/* TEXTO FOOTER */
 .footer p {
-  font-size: 1rem;
-  color: #777;
-  margin-bottom: 16px;
+  font-size: 0.85rem;
+  color: #666;
 }
 
-/* LOGO DEV — 4X MÁS GRANDE */
+/* LOGO DESARROLLADOR */
 .dev-logo {
-  width: 320px;          /* ⬅️ MUY GRANDE */
-  max-width: 90%;
-  opacity: 0.95;
+  width: 240px;          /* 👈 4× más grande que antes */
+  max-width: 80%;
+  height: auto;
+  opacity: 0.9;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .app-logo {
+    width: 420px;
+  }
+
+  .dev-logo {
+    width: 200px;
+  }
 }
 

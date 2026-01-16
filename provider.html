@@ -1,81 +1,165 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Perfil del Proveedor | Guapixim@</title>
+  <meta charset="UTF-8">
+  <title>Proveedor | Guapixim@</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 16px;
+      background: #f9f9f9;
+    }
+
+    .back {
+      margin-bottom: 10px;
+    }
+
+    .provider-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .provider-logo {
+      max-width: 180px;   /* 👈 LOGO REDUCIDO */
+      width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    .provider-info {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin: 10px 0;
+    }
+
+    /* TRABAJOS */
+    .jobs {
+      margin-bottom: 20px;
+    }
+
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .jobs-grid img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: #ddd;
+    }
+
+    /* SERVICIOS */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f1f1f1;
+    }
+
+    .service-img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .btn {
+      background: #6c63ff;
+      color: #fff;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+  </style>
 </head>
 <body>
 
+  <div class="back">
+    <a href="home.html">← Volver</a>
+  </div>
+
   <!-- HEADER -->
-  <header class="provider-header">
-    <button class="back-button" onclick="goBack()">← Volver</button>
-  </header>
+  <div class="provider-header">
+    <img src="img/services/providers/prov001/logo.png" class="provider-logo" alt="Logo proveedor">
+    <h2>Manos de Oro Studio</h2>
+  </div>
 
-  <!-- MAIN -->
-  <main class="provider-main">
+  <!-- INFO -->
+  <div class="provider-info">
+    <p><strong>Estilista:</strong> Carolina Méndez</p>
+    <p><strong>Provincia:</strong> San José</p>
+    <p><strong>Atención:</strong> Local y domicilio</p>
+    <p><strong>Contacto:</strong> +506 8888 8888</p>
+  </div>
 
-    <!-- INFO PRINCIPAL DEL PROVEEDOR -->
-    <section class="provider-info">
+  <!-- TRABAJOS -->
+  <div class="jobs">
+    <h3>Trabajos realizados</h3>
+    <div class="jobs-grid">
+      <img src="img/services/providers/prov001/trabajos/trabajo1.jpg" alt="">
+      <img src="img/services/providers/prov001/trabajos/trabajo2.jpg" alt="">
+      <img src="img/services/providers/prov001/trabajos/trabajo3.jpg" alt="">
+    </div>
+  </div>
 
-      <img id="provider-logo" class="provider-logo-large" src="" alt="Logo proveedor" />
+  <!-- SERVICIOS -->
+  <h3>Servicios disponibles</h3>
+  <table>
+    <tr>
+      <th>Servicio</th>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Duración</th>
+      <th></th>
+    </tr>
 
-      <h1 id="provider-name"></h1>
-      <p id="provider-stylist" class="provider-stylist-name"></p>
-      <p id="provider-province"></p>
-      <p id="provider-attention"></p>
-      <p id="provider-contact"></p>
+    <tr>
+      <td><img src="img/services/providers/prov001/services/manicure.jpg" class="service-img"></td>
+      <td>Manicure clásico</td>
+      <td>₡7000</td>
+      <td>40 min</td>
+      <td><button class="btn">Reservar</button></td>
+    </tr>
 
-    </section>
+    <tr>
+      <td><img src="img/services/providers/prov001/services/gel.jpg" class="service-img"></td>
+      <td>Manicure gel</td>
+      <td>₡10000</td>
+      <td>60 min</td>
+      <td><button class="btn">Reservar</button></td>
+    </tr>
 
-    <!-- TRABAJOS REALIZADOS -->
-    <section class="provider-works">
-      <h2>Trabajos realizados</h2>
-
-      <div id="works-container" class="works-container">
-        <!-- Imágenes dinámicas -->
-      </div>
-    </section>
-
-    <!-- SERVICIOS -->
-    <section class="provider-services">
-      <h2>Servicios disponibles</h2>
-
-      <table class="services-table">
-        <thead>
-          <tr>
-            <th>Servicio</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Duración</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="services-table-body">
-          <!-- Servicios dinámicos -->
-        </tbody>
-      </table>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>Powered by AlcazarPlay</p>
-    <img src="img/dev/alcazarplay-logo.png" alt="AlcazarPlay Logo" class="dev-logo">
-  </footer>
-
-  <!-- JS -->
-  <script src="js/provider.js"></script>
-
-  <script>
-    function goBack() {
-      window.location.href = "index.html";
-    }
-  </script>
+    <tr>
+      <td><img src="img/services/providers/prov001/services/acrilicas.jpg" class="service-img"></td>
+      <td>Uñas acrílicas</td>
+      <td>₡18000</td>
+      <td>90 min</td>
+      <td><button class="btn">Reservar</button></td>
+    </tr>
+  </table>
 
 </body>
 </html>

@@ -26,24 +26,24 @@ body {
 /* CONTENEDOR LOGIN */
 .login-container {
   width: 100%;
-  max-width: 520px; /* 👈 MÁS ANCHO PARA SOPORTAR LOGOS GRANDES */
+  max-width: 480px; /* 👈 ANTES 420px, AHORA +2× VISUAL */
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-/* LOGOS GRANDES */
+/* LOGOS (DOBLE DE TAMAÑO CONTROLADO) */
 .app-logo,
 .dev-logo {
   width: 100%;
-  max-width: 520px;   /* 👈 APARENTA 4× MÁS GRANDE */
   height: auto;
+  max-height: 260px; /* 👈 EVITA QUE SE COMA LA PANTALLA */
 }
 
 /* ESPACIADO LOGO APP */
 .app-logo {
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 /* TEXTO */
@@ -99,6 +99,6 @@ body {
 
   .app-logo,
   .dev-logo {
-    max-width: 100%; /* 👈 OCUPA TODO EL ANCHO DEL MÓVIL */
+    max-height: 220px; /* 👈 DOBLE PERO SEGURO EN MÓVIL */
   }
 }

@@ -1,39 +1,37 @@
-// ===============================
-// app.js — Login Cliente
-// ===============================
+const params = new URLSearchParams(window.location.search);
+const providerId = params.get("id");
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("login-form");
-  const input = document.getElementById("login-input");
+fetch("data.json")
+  .then(res => res.json())
+  .then(data => {
 
-  if (!form || !input) return;
+    const provider = data.providers.find(p => p.id === providerId);
+    const services = data.services.filter(s => s.provider_id === providerId);
 
-  // Si el cliente ya existe, pasar directo
-  const savedClient = localStorage.getItem("guapixima_client");
-  if (savedClient) {
-    window.location.href = "provider.html?id=prov001";
-  }
+    // INFO DEL PROVEEDOR
+    document.getElementById("provider-container").innerHTML = `
+      <img src="${provider.logo}" style="max-width:180px;display:block;margin:auto;">
+      <h1>${provider.nombre_comercial}</h1>
+      <p><strong>Estilista:</strong> ${provider.estilista}</p>
+      <p><strong>Provincia:</strong> ${provider.provincia}</p>
+      <p><strong>Atención:</strong> ${provider.atiende_local ? "Local" : ""} ${provider.atiende_domicilio ? " y domicilio" : ""}</p>
+      <p><strong>Contacto:</strong> ${provider.contacto}</p>
+    `;
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
+    // TRABAJOS
+    document.getElementById("jobs-container").innerHTML =
+      provider.trabajos.map(img => `<img src="${img}" class="job-img">`).join("");
 
-    const value = input.value.trim();
-
-    if (value === "") {
-      alert("Por favor ingresa tu correo o número de teléfono");
-      return;
-    }
-
-    // Guardar cliente (demo realista)
-    const clientData = {
-      contacto: value,
-      fecha_login: new Date().toISOString()
-    };
-
-    localStorage.setItem("guapixima_client", JSON.stringify(clientData));
-
-    // Redirigir (por ahora a un proveedor de prueba)
-    window.location.href = "provider.html?id=prov001";
+    // SERVICIOS
+    document.getElementById("services-container").innerHTML =
+      services.map(s => `
+        <tr>
+          <td><img src="${s.imagen}" class="service-img"></td>
+          <td>${s.nombre}</td>
+          <td>₡${s.precio}</td>
+          <td>${s.duracion_min} min</td>
+          <td><button>Reservar</button></td>
+        </tr>
+      `).join("");
   });
-});
 

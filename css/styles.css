@@ -26,45 +26,45 @@ body {
   padding: 20px;
 }
 
-/* LOGO APP — MUCHO MÁS GRANDE */
+/* LOGO APP — 4X MÁS GRANDE */
 .login-logo img {
-  width: 420px;        /* ⬅️ CASI 2x */
-  max-width: 95%;
-  margin-bottom: 40px;
+  width: 700px;          /* ⬅️ MUY GRANDE */
+  max-width: 100%;
+  margin-bottom: 50px;
 }
 
 /* LOGIN BOX */
 .login-box {
   width: 100%;
-  max-width: 420px;
+  max-width: 500px;
 }
 
 /* TEXTO */
 .login-text {
-  font-size: 1.05rem;
-  margin-bottom: 22px;
+  font-size: 1.1rem;
+  margin-bottom: 26px;
   color: #555;
 }
 
 /* INPUT */
 .login-input {
   width: 100%;
-  padding: 16px 18px;
-  font-size: 1.05rem;
+  padding: 18px 20px;
+  font-size: 1.1rem;
   border: 1px solid #ccc;
-  border-radius: 10px;
-  margin-bottom: 18px;
+  border-radius: 12px;
+  margin-bottom: 20px;
 }
 
 /* BOTÓN */
 .login-button {
   width: 100%;
-  padding: 16px;
-  font-size: 1.05rem;
+  padding: 18px;
+  font-size: 1.1rem;
   background-color: #e91e63;
   color: #fff;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
 }
 
@@ -75,20 +75,21 @@ body {
 /* FOOTER */
 .footer {
   text-align: center;
-  padding: 24px 10px 28px;
+  padding: 30px 10px 36px;
   border-top: 1px solid #eee;
 }
 
 /* TEXTO FOOTER */
 .footer p {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #777;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
-/* LOGO DEV — MÁS GRANDE Y LEGIBLE */
+/* LOGO DEV — 4X MÁS GRANDE */
 .dev-logo {
-  width: 180px;        /* ⬅️ CASI 2x */
-  max-width: 80%;
-  opacity: 0.9;
+  width: 320px;          /* ⬅️ MUY GRANDE */
+  max-width: 90%;
+  opacity: 0.95;
 }
+

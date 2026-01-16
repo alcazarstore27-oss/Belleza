@@ -2,32 +2,174 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Proveedor</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Proveedor | Guapixim@</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 16px;
+      background: #f9f9f9;
+    }
+
+    a {
+      text-decoration: none;
+      color: #6c63ff;
+      font-size: 14px;
+    }
+
+    /* HEADER */
+    .provider-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .provider-logo {
+      width: 160px;
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin: 5px 0;
+    }
+
+    /* INFO */
+    .provider-info {
+      background: #fff;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    /* TRABAJOS */
+    .jobs {
+      margin-bottom: 25px;
+    }
+
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .jobs-grid img {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: #ddd;
+    }
+
+    /* SERVICIOS */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 8px;
+      font-size: 14px;
+      border-bottom: 1px solid #eee;
+      text-align: center;
+    }
+
+    th {
+      background: #f1f1f1;
+    }
+
+    .service-img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .btn {
+      background: #6c63ff;
+      color: #fff;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
-<a href="index.html">← Volver</a>
+  <a href="home.html">← Volver</a>
 
-<div id="provider-container"></div>
+  <!-- HEADER -->
+  <div class="provider-header">
+    <img src="img/providers/prov001/logo.png" class="provider-logo" alt="Logo proveedor">
+    <h2>Manos de Oro Studio</h2>
+  </div>
 
-<h2>Trabajos realizados</h2>
-<div id="jobs-container" class="jobs"></div>
+  <!-- INFO -->
+  <div class="provider-info">
+    <p><strong>Estilista:</strong> Carolina Méndez</p>
+    <p><strong>Provincia:</strong> San José</p>
+    <p><strong>Atención:</strong> Local y domicilio</p>
+    <p><strong>Contacto:</strong> +506 8888 8888</p>
+  </div>
 
-<h2>Servicios disponibles</h2>
-<table class="services-table">
-  <thead>
+  <!-- TRABAJOS -->
+  <div class="jobs">
+    <h3>Trabajos realizados</h3>
+    <div class="jobs-grid">
+      <img src="img/providers/prov001/trabajos/trabajo01.png">
+      <img src="img/providers/prov001/trabajos/trabajo02.png">
+      <img src="img/providers/prov001/trabajos/trabajo03.png">
+    </div>
+  </div>
+
+  <!-- SERVICIOS -->
+  <h3>Servicios disponibles</h3>
+  <table>
     <tr>
       <th>Servicio</th>
       <th>Nombre</th>
       <th>Precio</th>
-      <th>Duración</th>
+      <th>Tiempo</th>
       <th></th>
     </tr>
-  </thead>
-  <tbody id="services-container"></tbody>
-</table>
 
-<script src="js/app.js"></script>
+    <tr>
+      <td>
+        <img src="img/services/providers/prov001/servicio01.png" class="service-img">
+      </td>
+      <td>Manicure clásico</td>
+      <td>₡7,000</td>
+      <td>40 min</td>
+      <td><button class="btn">Reservar</button></td>
+    </tr>
+
+    <tr>
+      <td>
+        <img src="img/services/providers/prov001/servicio02.png" class="service-img">
+      </td>
+      <td>Manicure gel</td>
+      <td>₡10,000</td>
+      <td>60 min</td>
+      <td><button class="btn">Reservar</button></td>
+    </tr>
+
+    <tr>
+      <td>
+        <img src="img/services/providers/prov001/servicio03.png" class="service-img">
+      </td>
+      <td>Uñas acrílicas</td>
+      <td>₡18,000</td>
+      <td>90 min</td>
+      <td><button class="btn">Reservar</button></td>
+    </tr>
+  </table>
+
 </body>
 </html>

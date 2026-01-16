@@ -33,11 +33,16 @@ body {
   text-align: center;
 }
 
-/* LOGO APP (DESKTOP) */
-.app-logo {
-  width: 280px;
+/* LOGOS = MISMO ANCHO QUE EL BOTÓN */
+.app-logo,
+.dev-logo {
+  width: 100%;        /* 👈 MISMO ANCHO QUE INPUT Y BOTÓN */
   max-width: 100%;
   height: auto;
+}
+
+/* ESPACIADO LOGO APP */
+.app-logo {
   margin-bottom: 24px;
 }
 
@@ -84,21 +89,4 @@ body {
 .footer p {
   font-size: 0.75rem;
   color: #666;
-}
-
-/* LOGO DEV */
-.dev-logo {
-  width: 120px;
-  height: auto;
-}
-
-/* 📱 MOBILE */
-@media (max-width: 480px) {
-  .app-logo {
-    width: 220px; /* 👈 EXACTO COMO PEDISTE */
-  }
-
-  .dev-logo {
-    width: 100px;
-  }
 }

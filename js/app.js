@@ -1,25 +1,20 @@
-// ============================
-// LOGIN CLIENTE
-// ============================
-
 document.addEventListener("DOMContentLoaded", () => {
 
+  /* ======================
+     LOGIN
+  ====================== */
   const loginBtn = document.getElementById("loginBtn");
 
   if (loginBtn) {
     loginBtn.addEventListener("click", () => {
-
       const input = document.getElementById("clientInput").value.trim();
 
-      if (input === "") {
-        alert("Por favor ingresa tu correo o número de teléfono");
+      if (!input) {
+        alert("Ingresa tu correo o teléfono");
         return;
       }
 
-      // Guardar cliente (simulación real)
       localStorage.setItem("guapixim_cliente", input);
-
-      // Redirigir a pantalla 2
       window.location.href = "home.html";
     });
   }

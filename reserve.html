@@ -2,96 +2,34 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Reserva | Guapixim</title>
+  <title>Reservar servicio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="stylesheet" href="css/styles.css">
-
-  <style>
-    body {
-      background: #f4f6fb;
-      padding: 16px;
-      font-family: Arial, sans-serif;
-    }
-
-    .card {
-      background: #fff;
-      padding: 16px;
-      border-radius: 12px;
-      margin-bottom: 16px;
-    }
-
-    h2 {
-      margin-top: 0;
-    }
-
-    label {
-      display: block;
-      margin-top: 12px;
-      font-weight: bold;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 8px;
-      margin-top: 6px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-
-    .btn {
-      margin-top: 20px;
-      width: 100%;
-      background: #6c63ff;
-      color: #fff;
-      border: none;
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  </style>
 </head>
 <body>
 
-  <a href="home.html">← Volver al inicio</a>
+<a href="provider.html">← Volver</a>
 
-  <div class="card">
-    <h2>Reservar servicio</h2>
+<div class="card">
+  <h2>Reservar servicio</h2>
 
-    <p id="serviceName"></p>
+  <label>Fecha</label>
+  <input type="date" id="date">
 
-    <label>Fecha</label>
-    <input type="date" id="date">
+  <label>Hora</label>
+  <select id="time">
+    <option value="">Selecciona una hora</option>
+    <option>09:00</option>
+    <option>10:00</option>
+    <option>11:00</option>
+    <option>14:00</option>
+    <option>15:00</option>
+  </select>
 
-    <label>Hora</label>
-    <select id="time">
-      <option value="">Selecciona una hora</option>
-      <option>09:00</option>
-      <option>10:00</option>
-      <option>11:00</option>
-      <option>13:00</option>
-      <option>14:00</option>
-      <option>15:00</option>
-    </select>
+  <button class="btn" onclick="confirmReservation()">Confirmar reserva</button>
+</div>
 
-    <button class="btn" id="confirmBtn">Confirmar reserva</button>
-  </div>
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const service = params.get("service");
-
-    if (service) {
-      document.getElementById("serviceName").textContent =
-        "Servicio seleccionado: " + service;
-    }
-
-    document.getElementById("confirmBtn").addEventListener("click", () => {
-      alert("Reserva confirmada 🎉");
-      window.location.href = "home.html";
-    });
-  </script>
-
+<script src="js/reserve.js"></script>
 </body>
 </html>
+

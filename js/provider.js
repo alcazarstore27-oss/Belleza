@@ -20,45 +20,24 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      /* =========================
-         HEADER
-      ========================== */
-      const logo = document.getElementById("providerLogo");
-      logo.src = provider.logo;
-      logo.alt = provider.nombre_comercial;
-
+      document.getElementById("providerLogo").src = provider.logo;
       document.getElementById("providerName").textContent =
         provider.nombre_comercial;
 
-      /* =========================
-         INFO
-      ========================== */
       document.getElementById("providerInfo").innerHTML = `
         <p><strong>Estilista:</strong> ${provider.estilista}</p>
         <p><strong>Provincia:</strong> ${provider.provincia}</p>
-        <p><strong>Atención:</strong>
-          ${provider.atiende_local ? "Local" : ""}
-          ${provider.atiende_domicilio ? " / Domicilio" : ""}
-        </p>
         <p><strong>Contacto:</strong> ${provider.contacto}</p>
       `;
 
-      /* =========================
-         TRABAJOS
-      ========================== */
       const jobsGrid = document.getElementById("jobsGrid");
       jobsGrid.innerHTML = "";
-
-      provider.trabajos.forEach(imgPath => {
-        const img = document.createElement("img");
-        img.src = imgPath;
-        img.alt = "Trabajo realizado";
-        jobsGrid.appendChild(img);
+      provider.trabajos.forEach(img => {
+        const i = document.createElement("img");
+        i.src = img;
+        jobsGrid.appendChild(i);
       });
 
-      /* =========================
-         SERVICIOS
-      ========================== */
       const table = document.getElementById("servicesTable");
       table.innerHTML = "";
 
@@ -66,9 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const row = document.createElement("tr");
 
         row.innerHTML = `
-          <td>
-            <img src="${service.imagen}" class="service-img" alt="${service.nombre}">
-          </td>
+          <td><img src="${service.imagen}" class="service-img"></td>
           <td>${service.nombre}</td>
           <td>₡${service.precio.toLocaleString()}</td>
           <td>${service.duracion_min} min</td>
@@ -83,24 +60,14 @@ document.addEventListener("DOMContentLoaded", () => {
         table.appendChild(row);
       });
 
-      /* =========================
-         EVENTO RESERVAR (FIX 404)
-      ========================== */
       document.querySelectorAll(".reservar-btn").forEach(btn => {
         btn.addEventListener("click", e => {
-          const servicio = e.target.dataset.service;
-
-          alert(`Reserva seleccionada: ${servicio}`);
-
-          // 👇 RUTA CORRECTA PARA GITHUB PAGES (Belleza/)
-          window.location.href = "./reserve.html";
+          const service = e.target.dataset.service;
+          window.location.href =
+            `reserve.html?service=${encodeURIComponent(service)}`;
         });
       });
 
-    })
-    .catch(err => {
-      console.error("Error cargando proveedor:", err);
-      alert("Error cargando información del proveedor");
     });
-
 });
+

@@ -1,3 +1,37 @@
+const params = new URLSearchParams(window.location.search);
+const serviceId = params.get("service");
+
+if (!serviceId) {
+  alert("Servicio no encontrado");
+  window.location.href = "home.html";
+}
+
+// =======================
+// CARGAR DATA PARA OBTENER PROVIDER
+// =======================
+fetch("data.json")
+  .then(res => res.json())
+  .then(data => {
+
+    const service = data.services.find(s => s.id === serviceId);
+
+    if (!service) {
+      alert("Servicio inválido");
+      window.location.href = "home.html";
+      return;
+    }
+
+    // Link volver
+    document.getElementById("backLink").href =
+      `provider.html?id=${service.provider_id}`;
+
+    window.currentService = service;
+  });
+
+
+// =======================
+// CONFIRMAR RESERVA
+// =======================
 function confirmReservation() {
   const date = document.getElementById("date").value;
   const time = document.getElementById("time").value;
@@ -7,24 +41,21 @@ function confirmReservation() {
     return;
   }
 
-  const params = new URLSearchParams(window.location.search);
-  const providerId = params.get("provider");
-  const serviceName = params.get("service");
+  const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
 
-  const reservation = {
-    id: Date.now(),
-    providerId,
-    service: serviceName,
-    date,
-    time,
-    status: "pendiente"
-  };
+  reservas.push({
+    provider_id: window.currentService.provider_id,
+    service_id: window.currentService.id,
+    servicio: window.currentService.nombre,
+    fecha: date,
+    hora: time
+  });
 
-  const reservations = JSON.parse(localStorage.getItem("reservations")) || [];
-  reservations.push(reservation);
-  localStorage.setItem("reservations", JSON.stringify(reservations));
+  localStorage.setItem("reservas", JSON.stringify(reservas));
 
-  alert("Reserva confirmada");
+  alert("Reserva realizada");
 
-  window.location.href = `provider.html?id=${providerId}`;
+  // 🔥 VOLVER BIEN AL PROVEEDOR
+  window.location.href =
+    `provider.html?id=${window.currentService.provider_id}`;
 }

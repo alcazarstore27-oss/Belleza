@@ -18,24 +18,64 @@
       background: #fff;
       padding: 16px;
       border-radius: 10px;
-      max-width: 400px;
+      max-width: 420px;
       margin: auto;
     }
 
     h2 {
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
-    p {
+    .info p {
       font-size: 14px;
       margin: 6px 0;
     }
 
+    label {
+      font-size: 14px;
+      margin-top: 12px;
+      display: block;
+    }
+
+    input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-top: 6px;
+    }
+
+    .hours {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .hour {
+      padding: 8px;
+      border-radius: 6px;
+      text-align: center;
+      font-size: 14px;
+      cursor: pointer;
+      background: #e0e0e0;
+    }
+
+    .hour.available {
+      background: #b6f5c9;
+    }
+
+    .hour.selected {
+      background: #6c63ff;
+      color: white;
+    }
+
     .btn {
       width: 100%;
-      margin-top: 12px;
-      padding: 10px;
+      margin-top: 14px;
+      padding: 12px;
       background: #6c63ff;
       color: white;
       border: none;
@@ -51,38 +91,89 @@
 </head>
 <body>
 
-  <a href="home.html">← Volver al inicio</a>
+<a href="provider.html?id=prov001">← Volver</a>
 
-  <div class="card">
-    <h2>Confirmar Reserva</h2>
+<div class="card">
+  <h2>Confirmar Reserva</h2>
 
-    <div id="reservaInfo"></div>
+  <div class="info" id="reservaInfo"></div>
 
-    <button class="btn" id="confirmarBtn">Confirmar Reserva</button>
-    <button class="btn secondary" onclick="history.back()">Cancelar</button>
-  </div>
+  <label>Selecciona una fecha</label>
+  <input type="date" id="dateInput">
 
-  <script>
-    const data = JSON.parse(localStorage.getItem("guapixim_reserva"));
+  <label>Selecciona una hora</label>
+  <div class="hours" id="hoursContainer"></div>
 
-    if (!data) {
-      document.getElementById("reservaInfo").innerHTML =
-        "<p>No hay reserva seleccionada.</p>";
-    } else {
-      document.getElementById("reservaInfo").innerHTML = `
-        <p><strong>Proveedor:</strong> ${data.provider_name}</p>
-        <p><strong>Servicio:</strong> ${data.service_name}</p>
-        <p><strong>Precio:</strong> ₡${data.precio.toLocaleString()}</p>
-        <p><strong>Duración:</strong> ${data.duracion} minutos</p>
-      `;
+  <button class="btn" id="confirmarBtn">Confirmar Reserva</button>
+  <button class="btn secondary" onclick="history.back()">Cancelar</button>
+</div>
+
+<script>
+  const reserva = JSON.parse(localStorage.getItem("guapixim_reserva"));
+
+  if (!reserva) {
+    document.getElementById("reservaInfo").innerHTML =
+      "<p>No hay reserva seleccionada.</p>";
+  } else {
+    document.getElementById("reservaInfo").innerHTML = `
+      <p><strong>Proveedor:</strong> ${reserva.provider_name}</p>
+      <p><strong>Servicio:</strong> ${reserva.service_name}</p>
+      <p><strong>Precio:</strong> ₡${reserva.precio.toLocaleString()}</p>
+      <p><strong>Duración:</strong> ${reserva.duracion} minutos</p>
+    `;
+  }
+
+  const hours = [
+    "09:00","10:00","11:00",
+    "13:00","14:00","15:00",
+    "16:00","17:00","18:00"
+  ];
+
+  const hoursContainer = document.getElementById("hoursContainer");
+  let selectedHour = null;
+
+  function renderHours() {
+    hoursContainer.innerHTML = "";
+    hours.forEach(h => {
+      const div = document.createElement("div");
+      div.textContent = h;
+      div.className = "hour available";
+
+      div.onclick = () => {
+        document.querySelectorAll(".hour").forEach(el => el.classList.remove("selected"));
+        div.classList.add("selected");
+        selectedHour = h;
+      };
+
+      hoursContainer.appendChild(div);
+    });
+  }
+
+  renderHours();
+
+  document.getElementById("confirmarBtn").onclick = () => {
+    const date = document.getElementById("dateInput").value;
+
+    if (!date || !selectedHour) {
+      alert("Selecciona fecha y hora");
+      return;
     }
 
-    document.getElementById("confirmarBtn").addEventListener("click", () => {
-      alert("Reserva confirmada ✔");
-      localStorage.removeItem("guapixim_reserva");
-      window.location.href = "home.html";
-    });
-  </script>
+    const finalReserva = {
+      ...reserva,
+      fecha: date,
+      hora: selectedHour,
+      estado: "confirmada"
+    };
+
+    localStorage.setItem("guapixim_reserva_confirmada", JSON.stringify(finalReserva));
+    localStorage.removeItem("guapixim_reserva");
+
+    alert("Reserva confirmada ✔");
+    window.location.href = "home.html";
+  };
+</script>
 
 </body>
 </html>
+

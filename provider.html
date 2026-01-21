@@ -11,8 +11,18 @@
     body {
       background: #f4f6fb;
       padding: 16px;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
+    a {
+      text-decoration: none;
+      color: #6c63ff;
+      font-size: 14px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    /* HEADER */
     .provider-header {
       text-align: center;
       margin-bottom: 20px;
@@ -24,13 +34,20 @@
       margin-bottom: 10px;
     }
 
+    h2 {
+      margin: 6px 0;
+    }
+
+    /* CARD */
     .card {
       background: #fff;
       padding: 14px;
       border-radius: 10px;
       margin-bottom: 20px;
+      font-size: 14px;
     }
 
+    /* TRABAJOS */
     .jobs-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -42,8 +59,10 @@
       height: 100px;
       object-fit: cover;
       border-radius: 8px;
+      background: #ddd;
     }
 
+    /* SERVICIOS */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -86,17 +105,26 @@
 
   <!-- HEADER -->
   <div class="provider-header">
-    <img id="providerLogo" class="provider-logo">
-    <h2 id="providerName"></h2>
+    <img src="img/prov001/logo.png" class="provider-logo" alt="Logo proveedor">
+    <h2>Manos de Oro Studio</h2>
   </div>
 
   <!-- INFO -->
-  <div class="card" id="providerInfo"></div>
+  <div class="card">
+    <p><strong>Estilista:</strong> Carolina Méndez</p>
+    <p><strong>Provincia:</strong> San José</p>
+    <p><strong>Atención:</strong> Local y domicilio</p>
+    <p><strong>Contacto:</strong> +506 8888 8888</p>
+  </div>
 
   <!-- TRABAJOS -->
   <div class="card">
     <h3>Trabajos realizados</h3>
-    <div class="jobs-grid" id="jobsGrid"></div>
+    <div class="jobs-grid">
+      <img src="img/prov001/trabajos/trabajo01.png" alt="Trabajo 1">
+      <img src="img/prov001/trabajos/trabajo02.png" alt="Trabajo 2">
+      <img src="img/prov001/trabajos/trabajo03.png" alt="Trabajo 3">
+    </div>
   </div>
 
   <!-- SERVICIOS -->
@@ -111,10 +139,39 @@
         <th></th>
       </tr>
     </thead>
-    <tbody id="servicesTable"></tbody>
+
+    <tbody>
+      <tr>
+        <td>
+          <img src="img/prov001/services/servicio01.png" class="service-img">
+        </td>
+        <td>Manicure clásico</td>
+        <td>₡7,000</td>
+        <td>40 min</td>
+        <td><button class="btn">Reservar</button></td>
+      </tr>
+
+      <tr>
+        <td>
+          <img src="img/prov001/services/servicio02.png" class="service-img">
+        </td>
+        <td>Manicure gel</td>
+        <td>₡10,000</td>
+        <td>60 min</td>
+        <td><button class="btn">Reservar</button></td>
+      </tr>
+
+      <tr>
+        <td>
+          <img src="img/prov001/services/servicio03.png" class="service-img">
+        </td>
+        <td>Uñas acrílicas</td>
+        <td>₡18,000</td>
+        <td>90 min</td>
+        <td><button class="btn">Reservar</button></td>
+      </tr>
+    </tbody>
   </table>
 
-  <script src="js/provider.js"></script>
 </body>
 </html>
-

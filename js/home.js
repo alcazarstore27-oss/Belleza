@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.getElementById("providersGrid");
   const searchInput = document.getElementById("searchInput");
+  const filterAtencion = document.getElementById("filterAtencion");
 
   let providers = [];
   let services = [];
@@ -11,9 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
       providers = data.providers;
       services = data.services;
       renderProviders(providers);
-    })
-    .catch(err => {
-      console.error("Error cargando data.json:", err);
     });
 
   function renderProviders(list) {
@@ -29,40 +27,52 @@ document.addEventListener("DOMContentLoaded", () => {
       card.className = "provider-card";
 
       card.innerHTML = `
-        <img src="${provider.logo}" alt="${provider.nombre_comercial}">
+        <img src="${provider.logo}">
         <h4>${provider.nombre_comercial}</h4>
         <p>${provider.provincia}</p>
       `;
 
-      card.addEventListener("click", () => {
+      card.onclick = () => {
         window.location.href = `provider.html?id=${provider.id}`;
-      });
+      };
 
       grid.appendChild(card);
     });
   }
 
-  searchInput.addEventListener("input", () => {
+  function applyFilters() {
     const term = searchInput.value.toLowerCase().trim();
-
-    if (term === "") {
-      renderProviders(providers);
-      return;
-    }
+    const atencion = filterAtencion.value;
 
     const filtered = providers.filter(provider => {
-      const matchProvider =
+      const matchText =
         provider.nombre_comercial.toLowerCase().includes(term) ||
-        provider.provincia.toLowerCase().includes(term);
+        provider.provincia.toLowerCase().includes(term) ||
+        services.some(
+          s =>
+            s.provider_id === provider.id &&
+            s.nombre.toLowerCase().includes(term)
+        );
 
-      const matchService = services.some(service =>
-        service.provider_id === provider.id &&
-        service.nombre.toLowerCase().includes(term)
-      );
+      let matchAtencion = true;
 
-      return matchProvider || matchService;
+      if (atencion === "local") {
+        matchAtencion = provider.atiende_local;
+      }
+      if (atencion === "domicilio") {
+        matchAtencion = provider.atiende_domicilio;
+      }
+      if (atencion === "ambos") {
+        matchAtencion =
+          provider.atiende_local && provider.atiende_domicilio;
+      }
+
+      return matchText && matchAtencion;
     });
 
     renderProviders(filtered);
-  });
+  }
+
+  searchInput.addEventListener("input", applyFilters);
+  filterAtencion.addEventListener("change", applyFilters);
 });

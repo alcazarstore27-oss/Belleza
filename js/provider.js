@@ -1,73 +1,97 @@
-document.addEventListener("DOMContentLoaded", () => {
+const params = new URLSearchParams(window.location.search);
+const providerId = params.get("id");
 
-  const params = new URLSearchParams(window.location.search);
-  const providerId = params.get("id");
+fetch("data.json")
+  .then(res => res.json())
+  .then(data => {
+    const provider = data.providers.find(p => p.id === providerId);
+    if (!provider) return;
 
-  if (!providerId) {
-    alert("Proveedor no encontrado");
-    return;
-  }
+    // Info básica
+    document.getElementById("provider-name").textContent = provider.name;
+    document.getElementById("provider-stylist").textContent = provider.stylist;
+    document.getElementById("provider-province").textContent = provider.province;
+    document.getElementById("provider-attention").textContent = provider.attention;
+    document.getElementById("provider-phone").textContent = provider.phone;
+    document.getElementById("provider-logo").src = provider.logo;
 
-  fetch("data.json")
-    .then(res => res.json())
-    .then(data => {
-
-      const provider = data.providers.find(p => p.id === providerId);
-      const services = data.services.filter(s => s.provider_id === providerId);
-
-      if (!provider) {
-        alert("Proveedor no existe");
-        return;
-      }
-
-      document.getElementById("providerLogo").src = provider.logo;
-      document.getElementById("providerName").textContent =
-        provider.nombre_comercial;
-
-      document.getElementById("providerInfo").innerHTML = `
-        <p><strong>Estilista:</strong> ${provider.estilista}</p>
-        <p><strong>Provincia:</strong> ${provider.provincia}</p>
-        <p><strong>Contacto:</strong> ${provider.contacto}</p>
+    // Trabajos
+    const worksContainer = document.getElementById("works");
+    provider.works.forEach(img => {
+      worksContainer.innerHTML += `
+        <img src="${img}" class="work-img">
       `;
+    });
 
-      const jobsGrid = document.getElementById("jobsGrid");
-      jobsGrid.innerHTML = "";
-      provider.trabajos.forEach(img => {
-        const i = document.createElement("img");
-        i.src = img;
-        jobsGrid.appendChild(i);
-      });
-
-      const table = document.getElementById("servicesTable");
-      table.innerHTML = "";
-
-      services.forEach(service => {
-        const row = document.createElement("tr");
-
-        row.innerHTML = `
-          <td><img src="${service.imagen}" class="service-img"></td>
-          <td>${service.nombre}</td>
-          <td>₡${service.precio.toLocaleString()}</td>
-          <td>${service.duracion_min} min</td>
+    // Servicios
+    const servicesContainer = document.getElementById("services");
+    provider.services.forEach(service => {
+      servicesContainer.innerHTML += `
+        <tr>
+          <td><img src="${service.image}" width="60"></td>
+          <td>${service.name}</td>
+          <td>${service.price}</td>
+          <td>${service.time}</td>
           <td>
-            <button class="btn reservar-btn"
-              data-service="${service.nombre}">
+            <button class="btn" onclick="reserveService('${service.name}')">
               Reservar
             </button>
           </td>
-        `;
-
-        table.appendChild(row);
-      });
-
-      document.querySelectorAll(".reservar-btn").forEach(btn => {
-        btn.addEventListener("click", e => {
-          const service = e.target.dataset.service;
-          window.location.href =
-            `reserve.html?service=${encodeURIComponent(service)}`;
-        });
-      });
-
+        </tr>
+      `;
     });
-});
+  });
+
+// ======================
+// RESERVAR SERVICIO
+// ======================
+function reserveService(serviceName) {
+  window.location.href =
+    `reserve.html?provider=${providerId}&service=${encodeURIComponent(serviceName)}`;
+}
+
+// ======================
+// CITAS
+// ======================
+function toggleAppointments() {
+  const box = document.getElementById("appointments");
+  box.style.display = box.style.display === "none" ? "block" : "none";
+  renderAppointments();
+}
+
+function renderAppointments() {
+  const box = document.getElementById("appointments");
+  const reservations = JSON.parse(localStorage.getItem("reservations")) || [];
+
+  const providerReservations = reservations.filter(
+    r => r.providerId === providerId
+  );
+
+  if (providerReservations.length === 0) {
+    box.innerHTML = "<p>No hay citas registradas</p>";
+    return;
+  }
+
+  box.innerHTML = `
+    <h3>Citas del proveedor</h3>
+    ${providerReservations.map(r => `
+      <div class="appointment">
+        <strong>${r.service}</strong><br>
+        📅 ${r.date} ⏰ ${r.time}<br>
+        Estado: ${r.status}
+        <br>
+        <button class="btn" onclick="deleteAppointment(${r.id})">
+          Eliminar
+        </button>
+      </div>
+    `).join("")}
+  `;
+}
+
+function deleteAppointment(id) {
+  let reservations = JSON.parse(localStorage.getItem("reservations")) || [];
+  reservations = reservations.filter(r => r.id !== id);
+  localStorage.setItem("reservations", JSON.stringify(reservations));
+  renderAppointments();
+}
 

@@ -1,31 +1,84 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Proveedores | Guapixim</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <title>Guapixim | Proveedores</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    body {
+      background: #f4f6fb;
+      padding: 16px;
+    }
+
+    .search-box {
+      margin-bottom: 16px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+    }
+
+    .providers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 16px;
+    }
+
+    .provider-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .provider-card:hover {
+      transform: scale(1.03);
+    }
+
+    .provider-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 8px;
+    }
+
+    .provider-card h4 {
+      font-size: 15px;
+      margin: 4px 0;
+    }
+
+    .provider-card p {
+      font-size: 13px;
+      color: #666;
+      margin: 0;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header style="text-align:center; padding:20px;">
-    <h2>Proveedores disponibles</h2>
-  </header>
+  <h2>Encuentra tu especialista</h2>
 
-  <!-- CONTENEDOR PROVEEDORES -->
-  <main style="padding:20px;">
-    <div id="providers-container" style="
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap:20px;
-    ">
-      <!-- Proveedores se cargan aquí -->
-    </div>
-  </main>
+  <!-- BUSCADOR -->
+  <div class="search-box">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Buscar por nombre, servicio o provincia…"
+    >
+  </div>
 
-  <!-- JS -->
+  <!-- LISTADO -->
+  <div class="providers-grid" id="providersGrid"></div>
+
   <script src="js/home.js"></script>
 </body>
 </html>

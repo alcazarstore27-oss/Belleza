@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reserva | Guapixim</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    body {
+      background: #f4f6fb;
+      padding: 16px;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: #fff;
+      padding: 16px;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      margin: 6px 0;
+    }
+
+    .btn {
+      width: 100%;
+      margin-top: 12px;
+      padding: 10px;
+      background: #6c63ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn.secondary {
+      background: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="home.html">← Volver al inicio</a>
+
+  <div class="card">
+    <h2>Confirmar Reserva</h2>
+
+    <div id="reservaInfo"></div>
+
+    <button class="btn" id="confirmarBtn">Confirmar Reserva</button>
+    <button class="btn secondary" onclick="history.back()">Cancelar</button>
+  </div>
+
+  <script>
+    const data = JSON.parse(localStorage.getItem("guapixim_reserva"));
+
+    if (!data) {
+      document.getElementById("reservaInfo").innerHTML =
+        "<p>No hay reserva seleccionada.</p>";
+    } else {
+      document.getElementById("reservaInfo").innerHTML = `
+        <p><strong>Proveedor:</strong> ${data.provider_name}</p>
+        <p><strong>Servicio:</strong> ${data.service_name}</p>
+        <p><strong>Precio:</strong> ₡${data.precio.toLocaleString()}</p>
+        <p><strong>Duración:</strong> ${data.duracion} minutos</p>
+      `;
+    }
+
+    document.getElementById("confirmarBtn").addEventListener("click", () => {
+      alert("Reserva confirmada ✔");
+      localStorage.removeItem("guapixim_reserva");
+      window.location.href = "home.html";
+    });
+  </script>
+
+</body>
+</html>

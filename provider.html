@@ -4,17 +4,108 @@
   <meta charset="UTF-8">
   <title>Proveedor</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    body {
+      background: #f4f6fb;
+      padding: 16px;
+      font-family: Arial, sans-serif;
+    }
+
+    a {
+      color: #6c63ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .provider-header {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .provider-logo {
+      width: 140px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 14px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .work-img {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 8px;
+      font-size: 14px;
+      border-bottom: 1px solid #eee;
+      text-align: center;
+    }
+
+    th {
+      background: #f1f1f1;
+    }
+
+    .service-img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .btn {
+      background: #6c63ff;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .appointment {
+      background: #f9f9ff;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
+
 <body>
 
 <a href="home.html">← Volver al inicio</a>
 
+<!-- HEADER -->
 <div class="provider-header">
-  <img id="provider-logo" src="" alt="Logo proveedor" class="provider-logo">
-  <h1 id="provider-name"></h1>
+  <img id="provider-logo" class="provider-logo" src="" alt="Logo proveedor">
+  <h2 id="provider-name"></h2>
 </div>
 
+<!-- INFO -->
 <div class="card">
   <p><strong>Estilista:</strong> <span id="provider-stylist"></span></p>
   <p><strong>Provincia:</strong> <span id="provider-province"></span></p>
@@ -25,16 +116,17 @@
 <!-- BOTÓN CITAS -->
 <button class="btn" onclick="toggleAppointments()">Citas</button>
 
-<!-- CONTENEDOR CITAS -->
 <div id="appointments" class="card" style="display:none"></div>
 
 <!-- TRABAJOS -->
-<h2>Trabajos realizados</h2>
-<div id="works" class="grid"></div>
+<div class="card">
+  <h3>Trabajos realizados</h3>
+  <div id="works" class="grid"></div>
+</div>
 
 <!-- SERVICIOS -->
-<h2>Servicios disponibles</h2>
-<table class="table">
+<h3>Servicios disponibles</h3>
+<table>
   <thead>
     <tr>
       <th>Servicio</th>
@@ -50,4 +142,3 @@
 <script src="js/provider.js"></script>
 </body>
 </html>
-

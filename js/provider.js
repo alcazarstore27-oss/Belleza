@@ -20,28 +20,22 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      /* ======================
-         HEADER
-      ====================== */
+      /* ================= HEADER ================= */
       document.getElementById("providerLogo").src = provider.logo;
       document.getElementById("providerName").textContent = provider.nombre_comercial;
 
-      /* ======================
-         INFO
-      ====================== */
+      /* ================= INFO ================= */
       document.getElementById("providerInfo").innerHTML = `
         <p><strong>Estilista:</strong> ${provider.estilista}</p>
         <p><strong>Provincia:</strong> ${provider.provincia}</p>
         <p><strong>Atención:</strong>
-          ${provider.atiende_local ? "Local" : ""} 
+          ${provider.atiende_local ? "Local" : ""}
           ${provider.atiende_domicilio ? " y Domicilio" : ""}
         </p>
         <p><strong>Contacto:</strong> ${provider.contacto}</p>
       `;
 
-      /* ======================
-         TRABAJOS
-      ====================== */
+      /* ================= TRABAJOS ================= */
       const jobsGrid = document.getElementById("jobsGrid");
       jobsGrid.innerHTML = "";
 
@@ -51,9 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         jobsGrid.appendChild(image);
       });
 
-      /* ======================
-         SERVICIOS + RESERVA
-      ====================== */
+      /* ================= SERVICIOS ================= */
       const table = document.getElementById("servicesTable");
       table.innerHTML = "";
 
@@ -62,19 +54,22 @@ document.addEventListener("DOMContentLoaded", () => {
         const row = document.createElement("tr");
 
         row.innerHTML = `
-          <td>
-            <img src="${service.imagen}" class="service-img">
-          </td>
+          <td><img src="${service.imagen}" class="service-img"></td>
           <td>${service.nombre}</td>
           <td>₡${service.precio.toLocaleString()}</td>
           <td>${service.duracion_min} min</td>
           <td>
-            <button class="btn reservar-btn">Reservar</button>
+            <button type="button" class="btn reservar-btn">Reservar</button>
           </td>
         `;
 
-        // BOTÓN RESERVAR
-        row.querySelector(".reservar-btn").addEventListener("click", () => {
+        table.appendChild(row);
+
+        // 🔥 EVENTO CLICK GARANTIZADO
+        const btn = row.querySelector(".reservar-btn");
+        btn.addEventListener("click", () => {
+
+          alert("Reserva seleccionada: " + service.nombre);
 
           const reserva = {
             provider_id: provider.id,
@@ -85,21 +80,23 @@ document.addEventListener("DOMContentLoaded", () => {
             duracion: service.duracion_min
           };
 
-          // Guardar reserva temporal
-          localStorage.setItem("guapixim_reserva", JSON.stringify(reserva));
+          localStorage.setItem(
+            "guapixim_reserva",
+            JSON.stringify(reserva)
+          );
 
-          // Ir a siguiente paso
           window.location.href = "reserve.html";
         });
 
-        table.appendChild(row);
       });
 
     })
     .catch(err => {
-      console.error("Error cargando proveedor:", err);
+      console.error("Error:", err);
+      alert("Error cargando datos");
     });
 
 });
+
 
 

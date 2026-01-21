@@ -4,11 +4,62 @@
   <meta charset="UTF-8">
   <title>Reservar servicio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    body {
+      background: #f4f6fb;
+      padding: 16px;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: #fff;
+      padding: 16px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 12px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .btn {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      background: #6c63ff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    a {
+      color: #6c63ff;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
 
-<a href="provider.html">← Volver</a>
+<a id="backLink">← Volver al proveedor</a>
 
 <div class="card">
   <h2>Reservar servicio</h2>
@@ -22,8 +73,10 @@
     <option>09:00</option>
     <option>10:00</option>
     <option>11:00</option>
+    <option>13:00</option>
     <option>14:00</option>
     <option>15:00</option>
+    <option>16:00</option>
   </select>
 
   <button class="btn" onclick="confirmReservation()">Confirmar reserva</button>
@@ -32,4 +85,5 @@
 <script src="js/reserve.js"></script>
 </body>
 </html>
+
 

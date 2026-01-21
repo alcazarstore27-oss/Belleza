@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Reserva | Guapixim</title>
+  <title>Mis Reservas | Guapixim</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="css/styles.css">
@@ -14,164 +14,105 @@
       font-family: Arial, sans-serif;
     }
 
-    .card {
-      background: #fff;
-      padding: 16px;
-      border-radius: 10px;
-      max-width: 420px;
-      margin: auto;
-    }
-
     h2 {
       text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .reservation {
+      background: #fff;
+      border-radius: 10px;
+      padding: 14px;
       margin-bottom: 12px;
+      font-size: 14px;
     }
 
-    .info p {
-      font-size: 14px;
-      margin: 6px 0;
+    .reservation p {
+      margin: 4px 0;
     }
 
-    label {
-      font-size: 14px;
-      margin-top: 12px;
-      display: block;
-    }
-
-    input[type="date"] {
-      width: 100%;
-      padding: 10px;
-      font-size: 14px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+    .status {
+      font-weight: bold;
       margin-top: 6px;
     }
 
-    .hours {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-top: 10px;
+    .status.confirmada {
+      color: green;
     }
 
-    .hour {
-      padding: 8px;
-      border-radius: 6px;
-      text-align: center;
-      font-size: 14px;
-      cursor: pointer;
-      background: #e0e0e0;
-    }
-
-    .hour.available {
-      background: #b6f5c9;
-    }
-
-    .hour.selected {
-      background: #6c63ff;
-      color: white;
+    .status.cancelada {
+      color: red;
     }
 
     .btn {
-      width: 100%;
-      margin-top: 14px;
-      padding: 12px;
-      background: #6c63ff;
-      color: white;
+      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: 6px;
       border: none;
-      border-radius: 8px;
-      font-size: 16px;
       cursor: pointer;
+      font-size: 14px;
     }
 
-    .btn.secondary {
-      background: #aaa;
+    .btn.cancel {
+      background: #ff6b6b;
+      color: white;
+    }
+
+    .empty {
+      text-align: center;
+      color: #777;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
 
-<a href="provider.html?id=prov001">← Volver</a>
+<a href="home.html">← Volver</a>
 
-<div class="card">
-  <h2>Confirmar Reserva</h2>
+<h2>Mis Reservas</h2>
 
-  <div class="info" id="reservaInfo"></div>
-
-  <label>Selecciona una fecha</label>
-  <input type="date" id="dateInput">
-
-  <label>Selecciona una hora</label>
-  <div class="hours" id="hoursContainer"></div>
-
-  <button class="btn" id="confirmarBtn">Confirmar Reserva</button>
-  <button class="btn secondary" onclick="history.back()">Cancelar</button>
-</div>
+<div id="reservasContainer"></div>
 
 <script>
-  const reserva = JSON.parse(localStorage.getItem("guapixim_reserva"));
+  const container = document.getElementById("reservasContainer");
 
-  if (!reserva) {
-    document.getElementById("reservaInfo").innerHTML =
-      "<p>No hay reserva seleccionada.</p>";
+  let reservas = JSON.parse(localStorage.getItem("guapixim_reservas")) || [];
+
+  if (reservas.length === 0) {
+    container.innerHTML = `<p class="empty">No tienes reservas aún.</p>`;
   } else {
-    document.getElementById("reservaInfo").innerHTML = `
-      <p><strong>Proveedor:</strong> ${reserva.provider_name}</p>
-      <p><strong>Servicio:</strong> ${reserva.service_name}</p>
-      <p><strong>Precio:</strong> ₡${reserva.precio.toLocaleString()}</p>
-      <p><strong>Duración:</strong> ${reserva.duracion} minutos</p>
-    `;
+    renderReservas();
   }
 
-  const hours = [
-    "09:00","10:00","11:00",
-    "13:00","14:00","15:00",
-    "16:00","17:00","18:00"
-  ];
+  function renderReservas() {
+    container.innerHTML = "";
 
-  const hoursContainer = document.getElementById("hoursContainer");
-  let selectedHour = null;
-
-  function renderHours() {
-    hoursContainer.innerHTML = "";
-    hours.forEach(h => {
+    reservas.forEach((r, index) => {
       const div = document.createElement("div");
-      div.textContent = h;
-      div.className = "hour available";
+      div.className = "reservation";
 
-      div.onclick = () => {
-        document.querySelectorAll(".hour").forEach(el => el.classList.remove("selected"));
-        div.classList.add("selected");
-        selectedHour = h;
-      };
+      div.innerHTML = `
+        <p><strong>Proveedor:</strong> ${r.provider_name}</p>
+        <p><strong>Servicio:</strong> ${r.service_name}</p>
+        <p><strong>Fecha:</strong> ${r.fecha}</p>
+        <p><strong>Hora:</strong> ${r.hora}</p>
+        <p class="status ${r.estado}">Estado: ${r.estado}</p>
+        ${r.estado === "confirmada"
+          ? `<button class="btn cancel" onclick="cancelar(${index})">Cancelar</button>`
+          : ""}
+      `;
 
-      hoursContainer.appendChild(div);
+      container.appendChild(div);
     });
   }
 
-  renderHours();
+  function cancelar(index) {
+    if (!confirm("¿Deseas cancelar esta reserva?")) return;
 
-  document.getElementById("confirmarBtn").onclick = () => {
-    const date = document.getElementById("dateInput").value;
-
-    if (!date || !selectedHour) {
-      alert("Selecciona fecha y hora");
-      return;
-    }
-
-    const finalReserva = {
-      ...reserva,
-      fecha: date,
-      hora: selectedHour,
-      estado: "confirmada"
-    };
-
-    localStorage.setItem("guapixim_reserva_confirmada", JSON.stringify(finalReserva));
-    localStorage.removeItem("guapixim_reserva");
-
-    alert("Reserva confirmada ✔");
-    window.location.href = "home.html";
-  };
+    reservas[index].estado = "cancelada";
+    localStorage.setItem("guapixim_reservas", JSON.stringify(reservas));
+    renderReservas();
+  }
 </script>
 
 </body>

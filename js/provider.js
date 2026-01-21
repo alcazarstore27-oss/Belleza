@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  console.log("provider.js cargado ✔");
+
   const params = new URLSearchParams(window.location.search);
   const providerId = params.get("id");
 
@@ -20,11 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      /* ================= HEADER ================= */
+      /* HEADER */
       document.getElementById("providerLogo").src = provider.logo;
       document.getElementById("providerName").textContent = provider.nombre_comercial;
 
-      /* ================= INFO ================= */
+      /* INFO */
       document.getElementById("providerInfo").innerHTML = `
         <p><strong>Estilista:</strong> ${provider.estilista}</p>
         <p><strong>Provincia:</strong> ${provider.provincia}</p>
@@ -35,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <p><strong>Contacto:</strong> ${provider.contacto}</p>
       `;
 
-      /* ================= TRABAJOS ================= */
+      /* TRABAJOS */
       const jobsGrid = document.getElementById("jobsGrid");
       jobsGrid.innerHTML = "";
 
@@ -45,12 +47,11 @@ document.addEventListener("DOMContentLoaded", () => {
         jobsGrid.appendChild(image);
       });
 
-      /* ================= SERVICIOS ================= */
+      /* SERVICIOS */
       const table = document.getElementById("servicesTable");
       table.innerHTML = "";
 
       services.forEach(service => {
-
         const row = document.createElement("tr");
 
         row.innerHTML = `
@@ -59,44 +60,43 @@ document.addEventListener("DOMContentLoaded", () => {
           <td>₡${service.precio.toLocaleString()}</td>
           <td>${service.duracion_min} min</td>
           <td>
-            <button type="button" class="btn reservar-btn">Reservar</button>
+            <button 
+              class="btn reservar-btn"
+              data-service='${JSON.stringify(service)}'>
+              Reservar
+            </button>
           </td>
         `;
 
         table.appendChild(row);
+      });
 
-        // 🔥 EVENTO CLICK GARANTIZADO
-        const btn = row.querySelector(".reservar-btn");
-        btn.addEventListener("click", () => {
+      /* 🔥 EVENTO GLOBAL (INFALIBLE) */
+      table.addEventListener("click", (e) => {
+        if (e.target.classList.contains("reservar-btn")) {
+
+          const service = JSON.parse(e.target.dataset.service);
 
           alert("Reserva seleccionada: " + service.nombre);
 
-          const reserva = {
+          localStorage.setItem("guapixim_reserva", JSON.stringify({
             provider_id: provider.id,
             provider_name: provider.nombre_comercial,
             service_id: service.id,
             service_name: service.nombre,
             precio: service.precio,
             duracion: service.duracion_min
-          };
-
-          localStorage.setItem(
-            "guapixim_reserva",
-            JSON.stringify(reserva)
-          );
+          }));
 
           window.location.href = "reserve.html";
-        });
-
+        }
       });
 
     })
     .catch(err => {
-      console.error("Error:", err);
+      console.error(err);
       alert("Error cargando datos");
     });
 
 });
-
-
 

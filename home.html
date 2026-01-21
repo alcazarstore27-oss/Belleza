@@ -13,22 +13,24 @@
       padding: 16px;
     }
 
-    .search-box {
+    .top-bar {
       margin-bottom: 16px;
     }
 
-    .search-box input {
+    .top-bar input,
+    .top-bar select {
       width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-      font-size: 16px;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
     }
 
     .providers-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 16px;
+      gap: 12px;
     }
 
     .provider-card {
@@ -45,39 +47,41 @@
     }
 
     .provider-card img {
-      width: 100px;
-      height: 100px;
+      width: 90px;
+      height: 90px;
       object-fit: contain;
       margin-bottom: 8px;
     }
 
     .provider-card h4 {
-      font-size: 15px;
       margin: 4px 0;
+      font-size: 15px;
     }
 
     .provider-card p {
       font-size: 13px;
       color: #666;
-      margin: 0;
     }
   </style>
 </head>
 <body>
 
-  <h2>Encuentra tu especialista</h2>
-
-  <!-- BUSCADOR -->
-  <div class="search-box">
+  <div class="top-bar">
     <input
       type="text"
       id="searchInput"
-      placeholder="Buscar por nombre, servicio o provincia…"
+      placeholder="Buscar proveedor o servicio"
     >
+
+    <select id="filterAtencion">
+      <option value="">Todos los tipos de atención</option>
+      <option value="local">Atención en local</option>
+      <option value="domicilio">Atención a domicilio</option>
+      <option value="ambos">Local y domicilio</option>
+    </select>
   </div>
 
-  <!-- LISTADO -->
-  <div class="providers-grid" id="providersGrid"></div>
+  <div id="providersGrid" class="providers-grid"></div>
 
   <script src="js/home.js"></script>
 </body>

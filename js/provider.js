@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  fetch("./data.json")
+  fetch("data.json")
     .then(res => res.json())
     .then(data => {
 
@@ -20,17 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // LOGO
+      // HEADER
       document.getElementById("providerLogo").src = provider.logo;
       document.getElementById("providerName").textContent = provider.nombre_comercial;
 
-      // INFO + IMAGEN ESTILISTA
+      // INFO
+      document.getElementById("stylistPhoto").src = provider.foto_estilista;
+
       document.getElementById("providerInfo").innerHTML = `
-        <img src="${provider.estilista_img}" style="width:120px;border-radius:10px;margin-bottom:10px;">
         <p><strong>Estilista:</strong> ${provider.estilista}</p>
         <p><strong>Provincia:</strong> ${provider.provincia}</p>
         <p><strong>Atención:</strong>
-          ${provider.atiende_local ? "Local" : ""} 
+          ${provider.atiende_local ? "Local" : ""}
           ${provider.atiende_domicilio ? " y Domicilio" : ""}
         </p>
         <p><strong>Contacto:</strong> ${provider.contacto}</p>
@@ -38,37 +39,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // TRABAJOS
       const jobsGrid = document.getElementById("jobsGrid");
-      jobsGrid.innerHTML = "";
-
       provider.trabajos.forEach(img => {
         const image = document.createElement("img");
         image.src = img;
-        image.alt = "Trabajo realizado";
         jobsGrid.appendChild(image);
       });
 
       // SERVICIOS
-      const table = document.getElementById("servicesTable");
-      table.innerHTML = "";
+      const list = document.getElementById("servicesList");
 
       services.forEach(service => {
-        const row = document.createElement("tr");
+        const card = document.createElement("div");
+        card.className = "service-card";
 
-        row.innerHTML = `
-          <td><img src="${service.imagen}" class="service-img"></td>
-          <td>${service.nombre}</td>
-          <td>₡${service.precio.toLocaleString()}</td>
-          <td>${service.duracion_min} min</td>
-          <td><button class="btn">Reservar</button></td>
+        card.innerHTML = `
+          <img src="${service.imagen}" class="service-img">
+          <div class="service-info">
+            <strong>${service.nombre}</strong>
+            <span>${service.descripcion}</span><br>
+            ₡${service.precio.toLocaleString()} · ${service.duracion_min} min
+          </div>
+          <button class="btn">Reservar</button>
         `;
 
-        table.appendChild(row);
+        list.appendChild(card);
       });
 
     })
-    .catch(err => {
-      console.error("Error cargando data.json:", err);
-    });
+    .catch(err => console.error(err));
 
 });
 
